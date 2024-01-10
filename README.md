@@ -5,6 +5,10 @@ O caso de uso básico seria onde um usuário comum queira comprar uma refeição
 
 Quando chega a vez dele, caso ele precise pagar ficará um contador de 1:30min aguardando o pagamento, após o pagamento o pedido fica na lista de pago e aguardando retirada (no balcão), quando ele entra no balcão e mostra o código ou QRCode gerado ao funcionário, o funcionário dá o prato, copo e talher para o usuário e a retirada é confirmada. Assim, finalizando o processo.
 
+## Arquitetura
+
+<iframe src="chart.drawio.html" width="600" height="400"></iframe>
+
 ## Tech stacks
 
 ### Web 
