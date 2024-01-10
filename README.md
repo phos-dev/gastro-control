@@ -7,7 +7,7 @@ Quando chega a vez dele, caso ele precise pagar ficará um contador de 1:30min a
 
 ## Arquitetura
 
-![Foto da arquitetura](https://raw.githubusercontent.com/phos-dev/gastro-control/master/chart.drawio.png)
+![Foto da arquitetura](https://github.com/phos-dev/gastro-control/blob/master/chart.drawio.png?raw=true)
 
 ## Tech stacks
 
