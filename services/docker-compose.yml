@@ -1,0 +1,12 @@
+version: '3'
+services:
+  queue-control: 
+    image: rabbitmq:3-management-alpine
+  core:
+    container_name: "core"
+    build:
+      context: .
+      dockerfile: ./core
+networks:
+  core:
+    name: 'core' 
