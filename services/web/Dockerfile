@@ -5,7 +5,7 @@ FROM base AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-COPY package.json yarn.lock ./
+COPY ./package.json ./
 RUN yarn --frozen-lockfile
 
 FROM base AS builder
@@ -27,13 +27,7 @@ COPY --from=builder /app/public ./public
 
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-COPY ./deploy .
 
 USER nextjs
-
-EXPOSE 3000
-
-ENV PORT 3000
-ENV HOSTNAME localhost
 
 CMD ["node", "server.js"]
