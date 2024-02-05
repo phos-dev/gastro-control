@@ -9,6 +9,14 @@ services:
       context: web
     ports:
       - 3000:3000
+  core-api:
+    image: gastrocontrol/core-api
+    container_name: "core-api"
+    build:
+      context: core
+    ports:
+      - 8080:80
+
 
 networks:
   kong-net:
