@@ -1,0 +1,13 @@
+module.exports = [
+  {
+    id: "1",
+    username: "user",
+    email: "user@test.com",
+    firstName: "User",
+    lastName: "A",
+    node_id: "http://kong:8001",
+    admin: true,
+    active: true,
+    password: "123!@",
+  },
+];

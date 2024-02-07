@@ -6,17 +6,29 @@ services:
     image: gastrocontrol/web
     container_name: "web"
     build:
-      context: web
+      context: services/web
     ports:
       - 3000:3000
+    networks:
+      - kong-net
   core-api:
     image: gastrocontrol/core-api
     container_name: "core-api"
     build:
-      context: core
+      context: services/core
     ports:
       - 8080:80
-
+    networks:
+      - kong-net
+  payment-api:
+    image: gastrocontrol/payment-api
+    container_name: "payment-api"
+    build:
+      context: services/payment
+    ports:
+      - 8081:8081
+    networks:
+      - kong-net
 
 networks:
   kong-net:

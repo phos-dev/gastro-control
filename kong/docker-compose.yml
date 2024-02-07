@@ -130,6 +130,9 @@ services:
   konga:
     image: pantsel/konga:next
     restart: always
+    secrets:
+      - konga_user_seed
+      - konga_node_seed
     networks:
         - kong-net
     environment:
@@ -140,6 +143,8 @@ services:
       DB_PASSWORD: kong
       TOKEN_SECRET: km1GUr4RkcQD7DewhJPNXrCuZwcKmqjb
       NODE_ENV: production
+      KONGA_SEED_USER_DATA_SOURCE_FILE: /run/secrets/konga_user_seed
+      KONGA_SEED_KONG_NODE_DATA_SOURCE_FILE:  /run/secrets/konga_node_seed
     depends_on:
       - db
     ports:
@@ -157,3 +162,7 @@ services:
 secrets:
   kong_postgres_password:
     file: ./POSTGRES_PASSWORD
+  konga_user_seed:
+    file: ./seed/SEED_DEFAULT_DATA.js
+  konga_node_seed:
+    file: ./seed/SEED_DEFAULT_NODE.js

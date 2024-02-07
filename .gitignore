@@ -4,6 +4,7 @@ project.lock.json
 .DS_Store
 *.pyc
 nupkg/
+/services/payment/data/*
 
 # Visual Studio Code
 .vscode/

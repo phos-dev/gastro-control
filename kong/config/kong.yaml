@@ -1,3 +1,22 @@
-# a very minimal declarative config file
-_format_version: "2.1"
-_transform: true
+_format_version: "3.0"
+
+services:
+  - name: payment-service
+    url: http://localhost:8081
+
+routes:
+  - name: payments
+    hosts:
+      - "*"
+    paths:
+      - "/payments"
+    methods:
+      - POST
+      - GET
+      - PUT
+      - DELETE
+
+plugins:
+  - name: cors
+    config:
+      allow_origin: ["*"]

@@ -21,13 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-es67f1pvru0!h@epj@9v#a0-9z$njsfi^@o9h03&*af9+^^r#('
-STRIPE_PUBLISHABLE_KEY = 'pk_test_51OdHh8FvkfDhIYepjokMaXJFKtpI2ywga5Yz13Wu198iHGP60nxnEF8VkYB0nu6eRyaMZfZT1LDcqHoC4S8aaZ0f00Qcbb765Y'
-STRIPE_SECRET_KEY = 'sk_test_51OdHh8FvkfDhIYepJhqjNTFbbCmthnczRcEcTFnLLg88TWjDQGBPT9gsaNW4TBgipMkemrcIuq9s0BUhCQZtoGqK00gXisRHo4'
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51OK9uUFJONQKqTu0VuTMfPuM8Pim5m7zDggb12JbupA7RSWUVTMSrubduwZx2uftgw73o4elvW9F5sH7VhFqR3v600MJdxAbpu'
+STRIPE_SECRET_KEY = 'sk_test_51OK9uUFJONQKqTu0kxWF4tlWL0nkXh1j1Qg4bySTWyKiZEZTqRw4WEXNnyD6ytUpFXlFfyn152N8Ue9jH35WaNSY008rfkn6K8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
