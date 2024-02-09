@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using core.Contexts;
+using Microsoft.EntityFrameworkCore;
 
 namespace core
 {
@@ -27,6 +29,10 @@ namespace core
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddDbContext<OrderDbContext>(options =>
+            {
+                options.UseSqlite("Data Source=database.sqlite"); // Replace with your connection string
+            });
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

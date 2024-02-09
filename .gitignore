@@ -5,6 +5,7 @@ project.lock.json
 *.pyc
 nupkg/
 /services/payment/data/*
+/kong/kong_data/*
 
 # Visual Studio Code
 .vscode/

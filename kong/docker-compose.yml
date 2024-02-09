@@ -124,8 +124,8 @@ services:
     tty: true
     networks:
       - kong-net
-    volumes:
-      - kong_data:/var/lib/postgresql/data
+    # volumes:
+    #   - ./kong_data:/var/lib/postgresql/data
 
   konga:
     image: pantsel/konga:next
@@ -163,6 +163,6 @@ secrets:
   kong_postgres_password:
     file: ./POSTGRES_PASSWORD
   konga_user_seed:
-    file: ./seed/SEED_DEFAULT_DATA.js
+    file: ./seed/kong_seed_user_data.data
   konga_node_seed:
-    file: ./seed/SEED_DEFAULT_NODE.js
+    file: ./seed/kong_seed_node_data.data

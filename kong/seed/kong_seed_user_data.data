@@ -8,6 +8,6 @@ module.exports = [
     node_id: "http://kong:8001",
     admin: true,
     active: true,
-    password: "123!@",
+    password: "Teste12345@",
   },
 ];

@@ -2,13 +2,20 @@
 using QRCoder;
 using System.Drawing;
 using System.IO;
+using core.Contexts;
+using core.Models;
 
 namespace core.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class QRCodeController : ControllerBase
+    public class CoreController : ControllerBase
     {
+        private CoreController(OrderDbContext _orderDbContext)
+        {
+        }
+        
+
         [HttpGet]
         public IActionResult Generate(string content)
         {
