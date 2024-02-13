@@ -65,7 +65,7 @@ services:
       KONG_PROXY_ACCESS_LOG: /dev/stdout
       KONG_PROXY_ERROR_LOG: /dev/stderr
       KONG_PREFIX: ${KONG_PREFIX:-/var/run/kong}
-      KONG_DECLARATIVE_CONFIG: "/opt/kong/kong.yaml"
+      KONG_DECLARATIVE_CONFIG: "/etc/kong/kong.yaml"
     secrets:
       - kong_postgres_password
     networks:
@@ -93,7 +93,7 @@ services:
     volumes:
       - kong_prefix_vol:${KONG_PREFIX:-/var/run/kong}
       - kong_tmp_vol:/tmp
-      - ./config:/opt/kong
+      - ./config:/etc/kong
     security_opt:
       - no-new-privileges
 
@@ -124,12 +124,13 @@ services:
     tty: true
     networks:
       - kong-net
-    # volumes:
-    #   - ./kong_data:/var/lib/postgresql/data
+    volumes:
+      - ./kong_data:/var/lib/postgresql/data
 
   konga:
     image: pantsel/konga:next
     restart: always
+    profiles: [ "database" ]
     secrets:
       - konga_user_seed
       - konga_node_seed
@@ -152,6 +153,7 @@ services:
 
   konga-prepare:
     image: pantsel/konga:latest
+    profiles: [ "database" ]
     command: "-c prepare -a postgres -u  postgresql://kong:kong@db:5432/kong"
     networks:
       - kong-net

@@ -48,12 +48,19 @@ namespace core.Controllers
         // PUT: api/Orders/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutOrder(int id, Order order)
+        public async Task<IActionResult> PutOrder(int id, Order order, string status)
         {
             if (id != order.Id)
             {
                 return BadRequest();
             }
+
+       //     Order originalOrder = await _context.Orders.Include(x => x.Id).Where(x => x.Status == status).FirstOrDefaultAsync();
+
+          //  if (originalOrder.Status != status && status == "preparing")
+          //  {
+                // Send to queue
+          //  }
 
             _context.Entry(order).State = EntityState.Modified;
 

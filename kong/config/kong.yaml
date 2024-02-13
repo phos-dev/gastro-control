@@ -3,14 +3,17 @@ _transform: true
 
 services:
   - name: payment-service
-    url: http://localhost:8081
+    protocol: "http"
+    host: payment-api
+    port: 8081
 
 routes:
-  - name: payments
+  - name: config
     hosts:
       - "*"
+    strip_path: false
     paths:
-      - "/payments"
+      - "/config"
     methods:
       - POST
       - GET

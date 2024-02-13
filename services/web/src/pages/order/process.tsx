@@ -1,19 +1,27 @@
 import api from "@/services/api";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Image from "next/image";
 
 const Page = () => {
-  const [src, setSrc] = useState();
   const router = useRouter();
   const orderId = router.query.order_id;
+  const sendOrderToQueue = async (orderId: any) => {
+    await api
+      .post(`/process-order/`, {
+        order_id: Number(orderId),
+      })
+      .then(() => router.replace('/'))
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setTimeout(() => {
+          router.replace("/");
+        }, 3000);
+      });
+  };
 
   useEffect(() => {
     if (router.isReady && orderId) {
-      api
-        .get(`/api/core?content=${orderId}`)
-        .then(({ data }) => setSrc(data))
-        .catch(() => {});
+      sendOrderToQueue(orderId);
     }
   }, [router.isReady, orderId]);
 
@@ -21,14 +29,7 @@ const Page = () => {
     <main
       className={`flex min-h-screen flex-col items-center justify-between p-24`}
     >
-      <div>Mostre esse QRCode p/ processar!</div>
-      <div>
-        {src && (
-          <a href={`/order/process?order_id=${orderId}`}>
-            <Image src={src} alt={orderId as string} width={300} height={300} />
-          </a>
-        )}
-      </div>
+      <div>Processando... </div>
     </main>
   );
 };

@@ -12,4 +12,9 @@ namespace core.Models
         public int Id { get; set; }
         public string Status { get; set; }
     }
+
+    public class ProcessOrderDto
+    {
+        public int order_id { get; set; }
+    }
 }

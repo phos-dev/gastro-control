@@ -1,7 +1,19 @@
 version: "3"
 services:
-  queue-control:
+  rabbitmq:
     image: rabbitmq:3-management-alpine
+    environment:
+      RABBITMQ_DEFAULT_VHOST: "/"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    networks:
+      - kong-net
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 30s
+      timeout: 30s
+      retries: 3
   frontend:
     image: gastrocontrol/web
     container_name: "web"
@@ -20,11 +32,17 @@ services:
       - 8080:80
     networks:
       - kong-net
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
   payment-api:
     image: gastrocontrol/payment-api
     container_name: "payment-api"
     build:
       context: services/payment
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
     ports:
       - 8081:8081
     networks:

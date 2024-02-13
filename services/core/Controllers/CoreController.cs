@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using QRCoder;
 using System.Drawing;
 using System.IO;
@@ -11,10 +12,6 @@ namespace core.Controllers
     [Route("api/[controller]")]
     public class CoreController : ControllerBase
     {
-        private CoreController(OrderDbContext _orderDbContext)
-        {
-        }
-        
 
         [HttpGet]
         public IActionResult Generate(string content)
@@ -30,7 +27,8 @@ namespace core.Controllers
                         {
                             bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                             ms.Position = 0;
-                            return File(ms.ToArray(), "image/png");
+                            string base64String = Convert.ToBase64String(ms.ToArray());
+                            return Ok($"data:image/png;base64,{base64String}");
                         }
                     }
                 }

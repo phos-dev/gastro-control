@@ -9,7 +9,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using core.Contexts;
 using Microsoft.EntityFrameworkCore;
@@ -43,13 +45,24 @@ namespace core
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
+            
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "core v1"));
-            }
 
+                app.Use(async (context, next) =>
+                {
+                    var initialBody = context.Request.Body;
+
+                    using (var bodyReader = new StreamReader(context.Request.Body))
+                    {
+                        string body = await bodyReader.ReadToEndAsync();
+                        Console.WriteLine(body);
+                        context.Request.Body = new MemoryStream(Encoding.UTF8.GetBytes(body));
+                        await next.Invoke();
+                        context.Request.Body = initialBody;
+                    }
+                });
             app.UseRouting();
 
             app.UseAuthorization();
