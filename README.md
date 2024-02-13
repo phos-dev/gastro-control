@@ -18,13 +18,16 @@ Next.js (Typescript)
 #### API para receber pagamentos
   - Descrição: Irá fazer todo o controle de pagamento utilizando alguma lib de terceiro, como **Stripe**.
   - Framework: Sprint Boot (Java)
-  - Banco: NoSQL
-#### API para controlar a fila:
+
+#### Fila:
   - Descrição: Irá fazer o controle da fila para o pagamento/entrada no estabelecimento.
   - Framework: RabbitMQ
 #### API para gerir o pedido
   - Descrição: O caso de uso base seria que após a confirmação do pagamento irá gerar o QRCode para o usuário. Quando o funcionário que entrega prato for ler o QRCode deve ser confirmado e finalizado o processo
   - Framework: C# (.NET)
-  - Banco: SQL
+  - Banco: SQLite
 #### API Gateway
   - Framework: Kong
+  - [Serviços](https://i.gyazo.com/17ca233740c71dc518831c5ff249daeb.png)
+  - [Rotas](https://i.gyazo.com/95901fc66466b4652b2476dfa18e6709.png)
+  - Plugin: Cors
