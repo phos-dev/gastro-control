@@ -19,7 +19,7 @@ const Page = () => {
 
   return (
     <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24`}
+      className={`flex min-h-screen flex-col items-center gap-4 p-24`}
     >
       <div>Mostre esse QRCode p/ processar!</div>
       <div>
